@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js" ></script>
+        <script>
+        var url = window.location.href
+        var id = url.split("?")[1].split("=")[1]
+        $(function(){
+           if(id=='xw'){
+               $.ajax({
+                   url:'http://localhost:3000/item/list',
+                   type:'GET',
+                   success:function(e){
+                       for(var i in e){
+                           $("body").append("<a href='b.html?id="+e[i].id+"'>"+e[i].name+"</a>")
+                       }
+                   }
+               })
+           }else{
+               $.ajax({
+                   url:"http://localhost:3000/item/detail",
+                   type:"post",
+                   data:{abc:id},
+                   success:function(e){
+                       $("body").append("<p>"+e[0].xiangqing+"</p>")
+                   }
+               })
+           }
+        })
+    </script>
+</head>
+<body>
+
+</body>
+</html>
